@@ -1,0 +1,10 @@
+# Hushh Ambassador Program — Netlify Redirects
+
+# Clean URL shortcuts
+/admin    /hushhambassify.html      200
+/portal   /ambassador-portal.html  200
+/enroll   /student-enrollment.html 200
+/join     /student-enrollment.html 200
+
+# Fallback — serve index for any unmatched path
+/*        /index.html              200

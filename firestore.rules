@@ -1,0 +1,63 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── CAMPAIGNS ──────────────────────────────────────────────────────
+    // Readable by everyone (ambassadors read campaigns without auth in-memory)
+    // Writable by anyone (admin portal uses no auth — relies on app security)
+    // For production: restrict writes to admin UID only.
+    match /campaigns/{campId} {
+      allow read: if true;
+      allow write: if true;  // TODO: restrict to admin UID for production
+    }
+
+    // ── CAMPAIGN NOTIFICATIONS ─────────────────────────────────────────
+    // Written by admin (hushhambassify.html), read by all ambassadors.
+    // This is what triggers real-time push notifications to ambassador portals.
+    match /campaign_notifications/{notifId} {
+      allow read: if true;
+      allow write: if true;  // TODO: restrict to admin UID for production
+    }
+
+    // ── STUDENT ENROLLMENTS ────────────────────────────────────────────
+    // Students submit via enrollment form (no auth).
+    // Ambassadors and admin can read/update.
+    match /student_enrollments/{docId} {
+      allow read: if true;
+      allow create: if true;   // enrollment form (unauthenticated)
+      allow update: if true;   // ambassador accepts/declines
+      allow delete: if false;
+    }
+
+    // ── AMBASSADOR APPLICATIONS ────────────────────────────────────────
+    // Applicants create their own application (no auth during signup).
+    // Admin can read and update (approve/reject).
+    match /ambassador_applications/{docId} {
+      allow read: if true;
+      allow create: if true;   // registration form
+      allow update: if true;   // admin approval
+      allow delete: if false;
+    }
+
+    // ── AMBASSADORS (approved profiles) ───────────────────────────────
+    // Created by admin upon approval. Read by the ambassador (by UID).
+    match /ambassadors/{uid} {
+      allow read: if true;
+      allow write: if true;  // TODO: restrict to request.auth.uid == uid for production
+    }
+
+    // ── ADMIN SETTINGS (payment details etc.) ─────────────────────────
+    // Written by admin portal, read by all ambassador portals.
+    // This is how the admin UPI/bank details propagate to every ambassador.
+    match /admin_settings/{docId} {
+      allow read: if true;
+      allow write: if true;  // TODO: restrict to admin UID for production
+    }
+
+    // ── DENY ALL OTHER COLLECTIONS ─────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

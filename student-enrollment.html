@@ -1,0 +1,1902 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/png" href="hushh-logo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HushhAmbassify — Join Now</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #C9A84C;
+      --primary-light: #E0C06E;
+      --primary-dark: #A07830;
+      --accent: #10B981;
+      --accent-light: #34D399;
+      --accent-dark: #059669;
+      --bg: #FAFAF8;
+      --surface: #FFFFFF;
+      --surface2: #F5F4EF;
+      --border: #E8E4D8;
+      --text: #1A1208;
+      --text-2: #4A3F2A;
+      --text-3: #9A8F78;
+      --danger: #EF4444;
+      --warning: #F59E0B;
+      --radius: 14px;
+      --shadow: 0 1px 3px rgba(0, 0, 0, .08), 0 4px 16px rgba(0, 0, 0, .06);
+      --shadow-lg: 0 8px 40px rgba(30, 64, 175, .13), 0 2px 8px rgba(0, 0, 0, .06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      width: 42%;
+      background: linear-gradient(160deg, #0a1540 0%, #C9A84C 58%, #1d4ed8 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 52px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: -140px;
+      right: -100px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, .1);
+      pointer-events: none;
+    }
+
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: -80px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .04);
+      pointer-events: none;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #10B981, #34D399);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .brand-name {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .5);
+      letter-spacing: .4px;
+    }
+
+    .left-hero {
+      position: relative;
+      z-index: 1;
+    }
+
+    .left-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 34px;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .left-hero h1 em {
+      font-style: normal;
+      color: #34D399;
+    }
+
+    .left-hero p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .65);
+      line-height: 1.75;
+      max-width: 300px;
+    }
+
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .benefit-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    .benefit-text span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .6);
+      line-height: 1.5;
+    }
+
+    .social-proof {
+      display: flex;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sp-stat-val {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: #fff;
+    }
+
+    .sp-stat-lbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .5);
+      margin-top: 1px;
+    }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    /* ── STEP INDICATOR ── */
+    .step-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .3s;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+      background: #fff;
+      color: var(--text-3);
+    }
+
+    .step-circle.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(30, 64, 175, .15);
+    }
+
+    .step-circle.done {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .step-circle.done::after {
+      content: '✓';
+    }
+
+    .step-circle.done .step-num {
+      display: none;
+    }
+
+    .step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+
+    .step-node.active .step-label {
+      color: var(--primary);
+    }
+
+    .step-node.done .step-label {
+      color: var(--accent);
+    }
+
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      margin: 0 8px;
+      min-width: 16px;
+      transition: background .3s;
+    }
+
+    .step-connector.done {
+      background: var(--accent);
+    }
+
+    /* ── FORM SHELL ── */
+    .form-shell {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: stepIn .3s ease;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateX(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0)
+      }
+    }
+
+    .form-step-header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      padding: 24px 28px;
+      color: #fff;
+    }
+
+    .fsh-step {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: .7;
+      margin-bottom: 4px;
+    }
+
+    .fsh-title {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .fsh-sub {
+      font-size: 13px;
+      opacity: .7;
+      margin-top: 4px;
+    }
+
+    .form-body {
+      padding: 24px 28px;
+    }
+
+    /* ── FIELDS ── */
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--text);
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .field-label .req {
+      color: var(--danger);
+      margin-left: 2px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field-input-wrap {
+      position: relative;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-3);
+      pointer-events: none;
+    }
+
+    .field-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    .field-input.has-icon {
+      padding-left: 40px;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, .1);
+    }
+
+    .field-input.error,
+    .field-select.error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, .08);
+    }
+
+    .field-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .field-hint {
+      font-size: 11.5px;
+      color: var(--text-3);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .field-err {
+      font-size: 12px;
+      color: var(--danger);
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-err.show {
+      display: block;
+    }
+
+    .field-select {
+      cursor: pointer;
+    }
+
+    /* Ref code row */
+    .refcode-display {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #FDFAF0, #F0FDF4);
+      border: 1.5px solid var(--primary-light);
+      border-radius: 10px;
+      padding: 12px 16px;
+    }
+
+    .refcode-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      flex: 1;
+    }
+
+    .refcode-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    /* Ambassador card */
+    .amb-preview {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1.5px solid var(--border);
+      margin-bottom: 18px;
+    }
+
+    .amb-avatar-sm {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #10B981, #E0C06E);
+    }
+
+    .amb-preview-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .amb-preview-college {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 1px;
+    }
+
+    .amb-preview-badge {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #ECFDF5;
+      color: #065F46;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* Step footer */
+    .form-footer {
+      padding: 16px 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface2);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 14px rgba(30, 64, 175, .3);
+    }
+
+    .btn-primary:active {
+      transform: scale(.98);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .btn-lg {
+      padding: 13px 28px;
+      font-size: 15px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    /* Progress dots */
+    .progress-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: all .3s;
+    }
+
+    .dot.active {
+      width: 22px;
+      border-radius: 4px;
+      background: var(--primary);
+    }
+
+    .dot.done {
+      background: var(--accent);
+    }
+
+    /* Review section */
+    .review-section {
+      margin-bottom: 20px;
+    }
+
+    .review-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--text-3);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 7px 0;
+      border-bottom: 1px solid #F8FAFC;
+    }
+
+    .review-row:last-child {
+      border: none;
+    }
+
+    .review-key {
+      font-size: 12.5px;
+      color: var(--text-3);
+    }
+
+    .review-val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+      max-width: 60%;
+    }
+
+    /* Success screen */
+    .success-screen {
+      display: none;
+    }
+
+    .success-screen.show {
+      display: block;
+      animation: stepIn .4s ease;
+    }
+
+    .success-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .success-banner {
+      background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+      padding: 36px 28px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .success-banner h2 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .success-banner p {
+      opacity: .85;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .success-body {
+      padding: 24px 28px;
+    }
+
+    .success-ref {
+      background: var(--surface2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .success-ref-label {
+      font-size: 11px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 4px;
+    }
+
+    .success-ref-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .next-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .next-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .ns-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .ns-text {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .ns-text strong {
+      color: var(--text);
+    }
+
+    /* Progress bar */
+    .progress-fill-bar {
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width .4s ease;
+    }
+
+    /* Interest tags */
+    .tag-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--text-2);
+      transition: all .2s;
+      user-select: none;
+    }
+
+    .tag:hover {
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .tag.selected {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Checkbox row */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .check-row input[type=checkbox] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-row label {
+      font-size: 13px;
+      color: var(--text-2);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .check-row a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Spinner */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255, 255, 255, .4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1E293B;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all .3s;
+      pointer-events: none;
+      max-width: 320px;
+    }
+
+    /* Mobile */
+    @media(max-width:840px) {
+      .left-panel {
+        display: none;
+      }
+
+      .right-panel {
+        padding: 28px 20px;
+      }
+
+      .form-container {
+        max-width: 100%;
+      }
+
+      .field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+  /* ════════════════════════════════════════════
+     HUSHH AI BRAND OVERRIDE — Gold + Dark theme
+     Primary: #C9A84C  Dark sidebar: #0F1117
+     ════════════════════════════════════════════ */
+
+  /* Sidebar — deep Hushh dark */
+  .sidebar {
+    background: linear-gradient(180deg, #0F1117 0%, #1A1628 70%, #231B0A 100%) !important;
+    border-right: 1px solid rgba(201,168,76,.15) !important;
+  }
+
+  /* Sidebar nav active item — gold highlight */
+  .nav-item.active {
+    background: rgba(201,168,76,.18) !important;
+    color: #C9A84C !important;
+    border-left: 3px solid #C9A84C !important;
+  }
+  .nav-item:hover { background: rgba(201,168,76,.10) !important; color: #E0C06E !important; }
+  .nav-item { color: rgba(255,255,255,.72) !important; border-left: 3px solid transparent !important; }
+  .nav-badge { background: #C9A84C !important; color: #0F1117 !important; font-weight: 800 !important; }
+
+  /* Logo area */
+  .logo-text { color: #FFFFFF !important; }
+  .logo-sub  { color: rgba(201,168,76,.7) !important; }
+  .sidebar-footer { border-top: 1px solid rgba(201,168,76,.15) !important; }
+  .user-avatar { background: linear-gradient(135deg,#C9A84C,#A07830) !important; color: #0F1117 !important; }
+  .user-name   { color: #FFFFFF !important; }
+  .user-role   { color: rgba(201,168,76,.8) !important; }
+
+  /* Primary buttons — Hushh Gold */
+  .btn-primary {
+    background: linear-gradient(135deg, #C9A84C, #A07830) !important;
+    color: #0F1117 !important;
+    font-weight: 700 !important;
+    border: none !important;
+    box-shadow: 0 4px 14px rgba(201,168,76,.35) !important;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #E0C06E, #C9A84C) !important;
+    box-shadow: 0 6px 20px rgba(201,168,76,.45) !important;
+  }
+
+  /* Outline buttons — gold border */
+  .btn-outline { border-color: #C9A84C !important; color: #A07830 !important; }
+  .btn-outline:hover { background: rgba(201,168,76,.08) !important; }
+
+  /* KPI cards — gold accent */
+  .kpi-card.green { border-top: 3px solid #C9A84C !important; }
+  .kpi-card.blue  { border-top: 3px solid #0F1117 !important; }
+  .kpi-card.amber { border-top: 3px solid #E0C06E !important; }
+  .kpi-value { color: #0F1117 !important; }
+  .kpi-change.up { color: #A07830 !important; }
+
+  /* Page background — warm cream */
+  body, .main { background: #FAFAF8 !important; }
+
+  /* Card hover shadow — gold tint */
+  .card:hover { box-shadow: 0 8px 28px rgba(201,168,76,.14) !important; }
+
+  /* Top bar */
+  .topbar { border-bottom: 1px solid #E8E4D8 !important; background: #FFFFFF !important; }
+  #page-title { color: #1A1208 !important; }
+
+  /* Section titles */
+  .section-title { color: #1A1208 !important; }
+
+  /* Badge colours */
+  .badge-green  { background: #FDF8EC !important; color: #A07830 !important; }
+  .badge-blue   { background: #F5F4EF !important; color: #1A1208 !important; }
+
+  /* Table header */
+  thead th { background: #F5F0E0 !important; color: #4A3F2A !important; border-bottom: 2px solid #E8E0C0 !important; }
+
+  /* Input focus — gold ring */
+  .form-input:focus, .form-select:focus, input:focus, select:focus {
+    border-color: #C9A84C !important;
+    box-shadow: 0 0 0 3px rgba(201,168,76,.18) !important;
+    outline: none !important;
+  }
+
+  /* Auth screen left panel */
+  .auth-panel-left, .auth-left {
+    background: linear-gradient(135deg, #0F1117 0%, #1A1628 50%, #2A1F08 100%) !important;
+  }
+
+  /* Nav section labels */
+  .nav-section-label { color: rgba(201,168,76,.55) !important; letter-spacing: .8px !important; }
+
+  /* Modal headers */
+  .modal-header, [class*="modal"] .modal-head {
+    background: linear-gradient(135deg,#0F1117,#1A1628) !important;
+  }
+
+  /* Green success badge in green context → gold */
+  .kpi-icon.green svg { stroke: #C9A84C !important; }
+  .kpi-icon.green     { background: rgba(201,168,76,.12) !important; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,.35) !important; }
+  ::-webkit-scrollbar-thumb:hover { background: #C9A84C !important; }
+</style>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, query, where, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCAE7NAySckcGH4tXvOQuKd7nujklzhxws",
+      authDomain: "hushh-9bd71.firebaseapp.com",
+      projectId: "hushh-9bd71",
+      storageBucket: "hushh-9bd71.firebasestorage.app",
+      messagingSenderId: "244828227461",
+      appId: "1:244828227461:web:16c8b993d3bb2de2e0a6ec",
+      measurementId: "G-ZMYYXHDWGP"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Expose to global scope for the inline scripts below
+    window.__db = db;
+    window.__fsCollection = collection;
+    window.__fsAddDoc = addDoc;
+    window.__fsQuery = query;
+    window.__fsDocs = getDocs;
+    window.__fsWhere = where;
+    window.__fsTimestamp = serverTimestamp;
+
+    // Load approved ambassadors from Firestore on page load
+    // so the referral-code validator works with live data
+    async function loadAmbassadorsFromFirestore() {
+      try {
+        const snap = await getDocs(collection(db, "ambassadors"));
+        snap.forEach(doc => {
+          const d = doc.data();
+          if (d.refCode) {
+            window.AMBASSADORS[d.refCode] = {
+              name: d.name,
+              college: d.college,
+              initials: (d.name || '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+              color: d.color || '#C9A84C',
+              uid: doc.id
+            };
+          }
+        });
+        console.log("✅ Ambassadors loaded from Firestore:", Object.keys(window.AMBASSADORS).length);
+      } catch (e) {
+        console.warn("Firestore load failed, using static list:", e);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', loadAmbassadorsFromFirestore);
+  </script>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <!-- ── LEFT BRANDING PANEL ── -->
+    <div class="left-panel">
+      <div class="brand">
+        <div class="brand-icon">🎓</div>
+        <div>
+          <div class="brand-name">HushhAmbassify</div>
+          <div class="brand-sub">Student Enrollment</div>
+        </div>
+      </div>
+
+      <div class="left-hero">
+        <h1>Start your journey<br>with <em>Hushh.</em></h1>
+        <p>Join thousands of students unlocking exclusive opportunities, skill resources, and a community that grows
+          with you — referred by someone who believes in you.</p>
+      </div>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="benefit-icon">🚀</div>
+          <div class="benefit-text">
+            <strong>Early Access</strong>
+            <span>Get priority access to Hushh's beta features and new tools before anyone else.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🤝</div>
+          <div class="benefit-text">
+            <strong>Peer Network</strong>
+            <span>Connect with driven students across top Indian institutions in one community.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">💡</div>
+          <div class="benefit-text">
+            <strong>Skill Resources</strong>
+            <span>Free workshops, career guides, and mentorship sessions every month.</span>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-text">
+            <strong>Exclusive Perks</strong>
+            <span>Merchandise, discounts, event invites, and recognition for active members.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-proof">
+        <div>
+          <div class="sp-stat-val">12,400+</div>
+          <div class="sp-stat-lbl">Students Enrolled</div>
+        </div>
+        <div>
+          <div class="sp-stat-val">180+</div>
+          <div class="sp-stat-lbl">Campuses</div>
+        </div>
+        <div>
+          <div class="sp-stat-val">4.9★</div>
+          <div class="sp-stat-lbl">Avg Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT FORM PANEL ── -->
+    <div class="right-panel">
+      <div class="form-container">
+
+        <!-- Header progress bar -->
+        <div style="margin-bottom:28px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div style="font-family:'Sora',sans-serif;font-weight:700;font-size:15px;color:var(--text)">Application Form
+            </div>
+            <div style="font-size:12px;color:var(--text-3)" id="progress-label">Step 1 of 4</div>
+          </div>
+          <div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+            <div class="progress-fill-bar" id="progress-bar" style="width:25%"></div>
+          </div>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="step-track" id="step-track">
+          <div class="step-node active" id="snode-1">
+            <div class="step-circle active" id="scircle-1"><span class="step-num">1</span></div>
+            <div class="step-label">Referral</div>
+          </div>
+          <div class="step-connector" id="scon-1"></div>
+          <div class="step-node" id="snode-2">
+            <div class="step-circle" id="scircle-2"><span class="step-num">2</span></div>
+            <div class="step-label">Personal</div>
+          </div>
+          <div class="step-connector" id="scon-2"></div>
+          <div class="step-node" id="snode-3">
+            <div class="step-circle" id="scircle-3"><span class="step-num">3</span></div>
+            <div class="step-label">Academic</div>
+          </div>
+          <div class="step-connector" id="scon-3"></div>
+          <div class="step-node" id="snode-4">
+            <div class="step-circle" id="scircle-4"><span class="step-num">4</span></div>
+            <div class="step-label">Review</div>
+          </div>
+        </div>
+
+        <!-- FORM CARD -->
+        <div class="form-shell" id="form-shell">
+
+          <!-- ══ STEP 1: REFERRAL CODE ══ -->
+          <div class="form-step active" id="step-1">
+            <div class="form-step-header">
+              <div class="fsh-step">Step 1 · Referral</div>
+              <div class="fsh-title">Ambassador's Referral Code</div>
+              <div class="fsh-sub">Enter the code shared by your campus ambassador.</div>
+            </div>
+            <div class="form-body">
+              <div class="field">
+                <label class="field-label">Referral Code <span class="req">*</span></label>
+                <div class="field-input-wrap">
+                  <span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg></span>
+                  <input class="field-input has-icon" id="ref-code-input" placeholder="e.g. ARJUN-IITD-2026"
+                    style="text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace"
+                    oninput="liveValidateCode(this)">
+                </div>
+                <div class="field-err" id="ref-code-err">Please enter a valid referral code.</div>
+                <div class="field-hint">Ask your ambassador for their unique code, or find it in the signup link they
+                  shared.</div>
+              </div>
+
+              <div id="amb-preview-wrap" style="display:none">
+                <div class="amb-preview">
+                  <div class="amb-avatar-sm" id="prev-initials">AK</div>
+                  <div>
+                    <div class="amb-preview-name" id="prev-name">Arjun Kumar</div>
+                    <div class="amb-preview-college" id="prev-college">IIT Delhi · Campus Ambassador</div>
+                  </div>
+                  <div class="amb-preview-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Verified
+                  </div>
+                </div>
+              </div>
+
+              <div style="background:var(--surface2);border-radius:10px;padding:14px 16px">
+                <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px">🎁 What you get by
+                  joining through a referral:</div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <div style="font-size:12px;color:var(--text-2)">✅ Dedicated onboarding support from your ambassador
+                  </div>
+                  <div style="font-size:12px;color:var(--text-2)">✅ Priority placement in campus events & workshops
+                  </div>
+                  <div style="font-size:12px;color:var(--text-2)">✅ Access to ambassador's exclusive student network
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-footer">
+              <div style="font-size:12px;color:var(--text-3)">Already a member? <a href="ambassador-portal.html"
+                  style="color:var(--primary);font-weight:600">Sign in →</a></div>
+              <button class="btn btn-primary" onclick="goToStep(2)">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 2: PERSONAL INFO ══ -->
+          <div class="form-step" id="step-2">
+            <div class="form-step-header">
+              <div class="fsh-step">Step 2 · Personal Information</div>
+              <div class="fsh-title">Tell us about yourself</div>
+              <div class="fsh-sub">Your basic contact information so we can reach you.</div>
+            </div>
+            <div class="form-body">
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label">First Name <span class="req">*</span></label>
+                  <input class="field-input" id="p-fname" placeholder="Riya">
+                  <div class="field-err" id="p-fname-err">Required.</div>
+                </div>
+                <div class="field">
+                  <label class="field-label">Last Name <span class="req">*</span></label>
+                  <input class="field-input" id="p-lname" placeholder="Mehta">
+                  <div class="field-err" id="p-lname-err">Required.</div>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">Email Address <span class="req">*</span></label>
+                <div class="field-input-wrap">
+                  <span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg></span>
+                  <input class="field-input has-icon" type="email" id="p-email" placeholder="you@college.edu">
+                </div>
+                <div class="field-err" id="p-email-err">Please enter a valid email.</div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label">Phone Number <span class="req">*</span></label>
+                  <div class="field-input-wrap">
+                    <span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path
+                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.81-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg></span>
+                    <input class="field-input has-icon" type="tel" id="p-phone" placeholder="+91 98765 43210">
+                  </div>
+                  <div class="field-err" id="p-phone-err">Required.</div>
+                </div>
+                <div class="field">
+                  <label class="field-label">Gender</label>
+                  <select class="field-select" id="p-gender">
+                    <option value="">Prefer not to say</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Non-binary</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">How did you hear about us?</label>
+                <select class="field-select" id="p-source">
+                  <option value="">Select source</option>
+                  <option>Campus Ambassador</option>
+                  <option>WhatsApp Group</option>
+                  <option>Instagram</option>
+                  <option>LinkedIn</option>
+                  <option>College Notice Board</option>
+                  <option>Friend / Peer Referral</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-footer">
+              <button class="btn btn-outline" onclick="goToStep(1)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+              </button>
+              <button class="btn btn-primary" onclick="goToStep(3)">
+                Continue
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 3: ACADEMIC INFO ══ -->
+          <div class="form-step" id="step-3">
+            <div class="form-step-header">
+              <div class="fsh-step">Step 3 · Academic Details</div>
+              <div class="fsh-title">Your education background</div>
+              <div class="fsh-sub">Helps us personalise resources for your course.</div>
+            </div>
+            <div class="form-body">
+              <div class="field">
+                <label class="field-label">College / University <span class="req">*</span></label>
+                <div class="field-input-wrap">
+                  <span class="field-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                      <polyline points="9 22 9 12 15 12 15 22" />
+                    </svg></span>
+                  <input class="field-input has-icon" id="a-college"
+                    placeholder="e.g. IIT Delhi, BITS Pilani, VIT Vellore…">
+                </div>
+                <div class="field-err" id="a-college-err">Required.</div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label">Course <span class="req">*</span></label>
+                  <select class="field-select" id="a-course">
+                    <option value="">Select course</option>
+                    <option>B.Tech</option>
+                    <option>M.Tech</option>
+                    <option>MBA</option>
+                    <option>BCA</option>
+                    <option>MCA</option>
+                    <option>B.Sc</option>
+                    <option>M.Sc</option>
+                    <option>B.Com</option>
+                    <option>BA / B.Des</option>
+                    <option>PhD</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="field-err" id="a-course-err">Required.</div>
+                </div>
+                <div class="field">
+                  <label class="field-label">Year of Study</label>
+                  <select class="field-select" id="a-year">
+                    <option value="">Select year</option>
+                    <option>1st Year</option>
+                    <option>2nd Year</option>
+                    <option>3rd Year</option>
+                    <option>4th Year</option>
+                    <option>5th Year</option>
+                    <option>Postgraduate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label class="field-label">Branch / Specialisation</label>
+                  <input class="field-input" id="a-branch" placeholder="e.g. Computer Science">
+                </div>
+                <div class="field">
+                  <label class="field-label">Graduation Year</label>
+                  <input class="field-input" id="a-grad" type="number" placeholder="e.g. 2027" min="2024" max="2032">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">Interests / Goals</label>
+                <div style="margin-bottom:8px;font-size:12px;color:var(--text-3)">Select all that apply</div>
+                <div class="tag-grid" id="interest-tags">
+                  <span class="tag" onclick="toggleTag(this)">💻 Tech & Coding</span>
+                  <span class="tag" onclick="toggleTag(this)">📊 Data Science</span>
+                  <span class="tag" onclick="toggleTag(this)">🚀 Startups</span>
+                  <span class="tag" onclick="toggleTag(this)">🎨 Design & UX</span>
+                  <span class="tag" onclick="toggleTag(this)">📈 Finance</span>
+                  <span class="tag" onclick="toggleTag(this)">🤖 AI / ML</span>
+                  <span class="tag" onclick="toggleTag(this)">📣 Marketing</span>
+                  <span class="tag" onclick="toggleTag(this)">🌏 Social Impact</span>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">Anything else you'd like us to know?</label>
+                <textarea class="field-textarea" id="a-notes"
+                  placeholder="Optional: why you're excited to join, goals, questions, etc."></textarea>
+              </div>
+            </div>
+            <div class="form-footer">
+              <button class="btn btn-outline" onclick="goToStep(2)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+              </button>
+              <button class="btn btn-primary" onclick="goToStep(4)">
+                Review Application
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 4: REVIEW & SUBMIT ══ -->
+          <div class="form-step" id="step-4">
+            <div class="form-step-header">
+              <div class="fsh-step">Step 4 · Review & Submit</div>
+              <div class="fsh-title">Review your application</div>
+              <div class="fsh-sub">Please verify all details before submitting.</div>
+            </div>
+            <div class="form-body">
+              <div id="review-content"></div>
+
+              <div class="field">
+                <div class="check-row">
+                  <input type="checkbox" id="chk-terms">
+                  <label for="chk-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy
+                      Policy</a> of HushhAmbassify.</label>
+                </div>
+                <div class="check-row">
+                  <input type="checkbox" id="chk-comms">
+                  <label for="chk-comms">I consent to receiving updates, resources, and announcements from
+                    HushhAmbassify via email and WhatsApp.</label>
+                </div>
+                <div class="field-err" id="chk-err">Please accept the terms to continue.</div>
+              </div>
+            </div>
+            <div class="form-footer">
+              <button class="btn btn-outline" onclick="goToStep(3)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back
+              </button>
+              <button class="btn btn-primary" id="submit-btn" onclick="submitApplication()">
+                <span id="submit-label">Submit Application</span>
+                <span id="submit-spinner" style="display:none"><span class="spinner"></span></span>
+                <svg id="submit-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUCCESS SCREEN (replaces form card) -->
+        <div class="success-screen" id="success-screen">
+          <div class="success-card">
+            <div class="success-banner">
+              <span class="success-icon">🎉</span>
+              <h2>Application Submitted!</h2>
+              <p>Your request has been sent to your ambassador.<br>You'll hear back within <strong>24–48 hours</strong>.
+              </p>
+            </div>
+            <div class="success-body">
+              <div class="success-ref">
+                <div class="success-ref-label">Your Application ID</div>
+                <div class="success-ref-val" id="app-id-display">APP-000000</div>
+              </div>
+
+              <div style="margin-bottom:20px">
+                <div
+                  style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin-bottom:10px">
+                  Reviewed by ambassador</div>
+                <div class="amb-preview">
+                  <div class="amb-avatar-sm" id="success-amb-initials">AK</div>
+                  <div>
+                    <div class="amb-preview-name" id="success-amb-name">Arjun Kumar</div>
+                    <div class="amb-preview-college" id="success-amb-college">IIT Delhi · Campus Ambassador</div>
+                  </div>
+                  <div class="amb-preview-badge">📬 Notified</div>
+                </div>
+              </div>
+
+              <div class="next-steps">
+                <div class="next-step">
+                  <div class="ns-num">1</div>
+                  <div class="ns-text">Your ambassador <strong>reviews your request</strong> and accepts or follows up
+                    with you directly</div>
+                </div>
+                <div class="next-step">
+                  <div class="ns-num">2</div>
+                  <div class="ns-text">You receive a <strong>confirmation email</strong> with your welcome kit and
+                    onboarding resources</div>
+                </div>
+                <div class="next-step">
+                  <div class="ns-num">3</div>
+                  <div class="ns-text">Join the community, attend events, and <strong>unlock all benefits</strong> 🚀
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg" onclick="window.location.reload()">Submit Another
+                Application</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end .form-container -->
+    </div><!-- end .right-panel -->
+  </div><!-- end .page-wrap -->
+
+  <div id="toast"></div>
+
+  <script>
+    // ── KNOWN AMBASSADORS (shared with portal via LS key) ──
+    // Exposed on window so the Firebase module script can append live entries
+    window.AMBASSADORS = window.AMBASSADORS || {
+      'ARJUN-IITD-2026': { name: 'Arjun Kumar', college: 'IIT Delhi', initials: 'AK', color: '#C9A84C' },
+      'SNEHA-BITS-2026': { name: 'Sneha Rao', college: 'BITS Pilani', initials: 'SR', color: '#10B981' },
+      'ROHAN-NIT-2026': { name: 'Rohan Verma', college: 'NIT Trichy', initials: 'RV', color: '#8B5CF6' },
+      'KARTHIK-IIIT-2026': { name: 'Karthik S', college: 'IIIT Hyderabad', initials: 'KS', color: '#EF4444' },
+      'PRIYA-BITS-2026': { name: 'Priya Sharma', college: 'BITS Pilani', initials: 'PS', color: '#EC4899' },
+      'DEMO': { name: 'Demo Ambassador', college: 'Demo Campus', initials: 'DA', color: '#6366F1' },
+    };
+    const AMBASSADORS = window.AMBASSADORS;
+
+    let currentStep = 1;
+    let validatedCode = null;
+    let formData = {};
+
+    // Auto-fill code from URL param
+    const urlParams = new URLSearchParams(window.location.search);
+    const codeFromUrl = urlParams.get('ref');
+    if (codeFromUrl) {
+      document.getElementById('ref-code-input').value = codeFromUrl.toUpperCase();
+      liveValidateCode(document.getElementById('ref-code-input'));
+    }
+
+    // ── STEP NAVIGATION ───────────────────────────────────
+    async function goToStep(n) {
+      if (n > currentStep) {
+        const valid = await validateStep(currentStep);
+        if (!valid) return;
+      }
+      // Mark steps
+      for (let i = 1; i <= 4; i++) {
+        const node = document.getElementById('snode-' + i);
+        const circle = document.getElementById('scircle-' + i);
+        node?.classList.remove('active', 'done');
+        circle?.classList.remove('active', 'done');
+        if (i < n) { node?.classList.add('done'); circle?.classList.add('done'); }
+        if (i === n) { node?.classList.add('active'); circle?.classList.add('active'); }
+        if (i < 4) {
+          const con = document.getElementById('scon-' + i);
+          if (con) con.classList.toggle('done', i < n);
+        }
+      }
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step-' + n).classList.add('active');
+
+      // Update progress
+      const pct = [25, 50, 75, 100][n - 1];
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = `Step ${n} of 4`;
+
+      if (n === 4) buildReview();
+      currentStep = n;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── VALIDATION ────────────────────────────────────────
+    async function validateStep(n) {
+      if (n === 1) {
+        const input = document.getElementById('ref-code-input');
+        const code = input.value.trim().toUpperCase();
+        const err = document.getElementById('ref-code-err');
+        input.classList.remove('error');
+        err.classList.remove('show');
+
+        if (!code) {
+          input.classList.add('error');
+          err.textContent = 'Please enter your ambassador referral code.';
+          err.classList.add('show');
+          return false;
+        }
+
+        // 1. Check in-memory map first (fast)
+        const ambMap = window.AMBASSADORS || AMBASSADORS;
+        let amb = ambMap[code];
+
+        // 2. If not found in memory, query Firestore directly (handles new ambassadors)
+        if (!amb) {
+          const validateBtn = document.querySelector('#step-1 .btn-primary');
+          if (validateBtn) { validateBtn.disabled = true; validateBtn.textContent = 'Verifying...'; }
+          try {
+            const db = window.__db;
+            const { getDocs, query, collection, where } = { 
+              getDocs: window.__fsDocs, 
+              query: window.__fsQuery, 
+              collection: window.__fsCollection, 
+              where: window.__fsWhere 
+            };
+            if (db && getDocs) {
+              const snap = await getDocs(query(
+                collection(db, 'ambassadors'),
+                where('refCode', '==', code)
+              ));
+              if (!snap.empty) {
+                const d = snap.docs[0].data();
+                if (d.status === 'Approved') {
+                  amb = {
+                    name: d.name,
+                    college: d.college || '',
+                    initials: (d.name || '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+                    color: d.color || '#C9A84C',
+                    uid: snap.docs[0].id
+                  };
+                  // Cache for future use
+                  window.AMBASSADORS[code] = amb;
+                }
+              }
+            }
+          } catch (e) {
+            console.warn('Firestore code validation failed:', e);
+          }
+          if (validateBtn) { validateBtn.disabled = false; validateBtn.textContent = 'Continue'; }
+        }
+
+        if (!amb) {
+          input.classList.add('error');
+          err.textContent = 'Invalid referral code. Please check with your ambassador and try again.';
+          err.classList.add('show');
+          return false;
+        }
+
+        validatedCode = code;
+        formData.refCode = code;
+        formData.ambassador = amb;
+        // Update preview one last time
+        showAmbPreview(code, amb);
+        return true;
+      }
+      if (n === 2) {
+        let ok = true;
+        const checks = [
+          { id: 'p-fname', err: 'p-fname-err', msg: 'First name is required.' },
+          { id: 'p-lname', err: 'p-lname-err', msg: 'Last name is required.' },
+          { id: 'p-phone', err: 'p-phone-err', msg: 'Phone number is required.' },
+        ];
+        checks.forEach(c => {
+          const el = document.getElementById(c.id);
+          const errEl = document.getElementById(c.err);
+          if (!el.value.trim()) {
+            el.classList.add('error'); errEl.textContent = c.msg; errEl.classList.add('show'); ok = false;
+          } else { el.classList.remove('error'); errEl.classList.remove('show'); }
+        });
+        const emailEl = document.getElementById('p-email');
+        const emailErr = document.getElementById('p-email-err');
+        if (!emailEl.value.trim() || !emailEl.value.includes('@')) {
+          emailEl.classList.add('error'); emailErr.classList.add('show'); ok = false;
+        } else { emailEl.classList.remove('error'); emailErr.classList.remove('show'); }
+        if (ok) {
+          formData.fname = document.getElementById('p-fname').value.trim();
+          formData.lname = document.getElementById('p-lname').value.trim();
+          formData.email = document.getElementById('p-email').value.trim();
+          formData.phone = document.getElementById('p-phone').value.trim();
+          formData.gender = document.getElementById('p-gender').value;
+          formData.source = document.getElementById('p-source').value;
+        }
+        return ok;
+      }
+      if (n === 3) {
+        let ok = true;
+        const college = document.getElementById('a-college');
+        const collegeErr = document.getElementById('a-college-err');
+        if (!college.value.trim()) { college.classList.add('error'); collegeErr.classList.add('show'); ok = false; }
+        else { college.classList.remove('error'); collegeErr.classList.remove('show'); }
+        const course = document.getElementById('a-course');
+        const courseErr = document.getElementById('a-course-err');
+        if (!course.value) { course.classList.add('error'); courseErr.classList.add('show'); ok = false; }
+        else { course.classList.remove('error'); courseErr.classList.remove('show'); }
+        if (ok) {
+          formData.college = college.value.trim();
+          formData.course = course.value;
+          formData.year = document.getElementById('a-year').value;
+          formData.branch = document.getElementById('a-branch').value.trim();
+          formData.grad = document.getElementById('a-grad').value;
+          formData.notes = document.getElementById('a-notes').value.trim();
+          formData.interests = Array.from(document.querySelectorAll('#interest-tags .tag.selected')).map(t => t.textContent.trim());
+        }
+        return ok;
+      }
+      return true;
+    }
+
+    // ── AMBASSADOR PREVIEW HELPER ─────────────────────────
+    function showAmbPreview(code, amb) {
+      const wrap = document.getElementById('amb-preview-wrap');
+      if (!amb || !code || code.length < 4) { wrap.style.display = 'none'; return; }
+      wrap.style.display = 'block';
+      document.getElementById('prev-initials').textContent = amb.initials;
+      document.getElementById('prev-initials').style.background = 'linear-gradient(135deg,' + amb.color + ',' + amb.color + 'bb)';
+      document.getElementById('prev-name').textContent = amb.name;
+      document.getElementById('prev-college').textContent = (amb.college || '') + ' · Campus Ambassador';
+    }
+
+    // ── LIVE CODE VALIDATION ──────────────────────────────
+    async function liveValidateCode(input) {
+      const code = input.value.trim().toUpperCase();
+      const err = document.getElementById('ref-code-err');
+      input.classList.remove('error');
+      err.classList.remove('show');
+
+      if (!code || code.length < 3) {
+        document.getElementById('amb-preview-wrap').style.display = 'none';
+        return;
+      }
+
+      // 1. Check in-memory map first (instant)
+      const ambMap = window.AMBASSADORS || AMBASSADORS;
+      let amb = ambMap[code];
+
+      // 2. On a complete-looking code, try Firestore if not found in memory
+      if (!amb && code.length >= 6) {
+        try {
+          const db = window.__db;
+          if (db && window.__fsDocs && window.__fsQuery && window.__fsCollection && window.__fsWhere) {
+            const snap = await window.__fsDocs(window.__fsQuery(
+              window.__fsCollection(db, 'ambassadors'),
+              window.__fsWhere('refCode', '==', code)
+            ));
+            if (!snap.empty) {
+              const d = snap.docs[0].data();
+              if (d.status === 'Approved') {
+                amb = {
+                  name: d.name,
+                  college: d.college || '',
+                  initials: (d.name || '').split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+                  color: d.color || '#C9A84C',
+                  uid: snap.docs[0].id
+                };
+                // Cache it
+                window.AMBASSADORS[code] = amb;
+              }
+            }
+          }
+        } catch (e) { /* offline — ignore */ }
+      }
+
+      showAmbPreview(code, amb);
+    }
+
+    // ── INTEREST TAGS ─────────────────────────────────────
+    function toggleTag(el) { el.classList.toggle('selected'); }
+
+    // ── REVIEW BUILD ──────────────────────────────────────
+    function buildReview() {
+      const d = formData;
+      const rc = document.getElementById('review-content');
+      const ints = (d.interests || []).join(', ') || '—';
+      rc.innerHTML = `
+    <div class="review-section">
+      <div class="review-section-title">🔗 Referral</div>
+      <div class="review-row"><div class="review-key">Ambassador</div><div class="review-val">${d.ambassador?.name || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Campus</div><div class="review-val">${d.ambassador?.college || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Referral Code</div><div class="review-val" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--primary)">${d.refCode || '—'}</div></div>
+    </div>
+    <div class="review-section">
+      <div class="review-section-title">👤 Personal</div>
+      <div class="review-row"><div class="review-key">Full Name</div><div class="review-val">${d.fname || ''} ${d.lname || ''}</div></div>
+      <div class="review-row"><div class="review-key">Email</div><div class="review-val">${d.email || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Phone</div><div class="review-val">${d.phone || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Gender</div><div class="review-val">${d.gender || 'Not specified'}</div></div>
+      <div class="review-row"><div class="review-key">Source</div><div class="review-val">${d.source || 'Not specified'}</div></div>
+    </div>
+    <div class="review-section">
+      <div class="review-section-title">🎓 Academic</div>
+      <div class="review-row"><div class="review-key">College</div><div class="review-val">${d.college || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Course</div><div class="review-val">${d.course || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Year</div><div class="review-val">${d.year || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Branch</div><div class="review-val">${d.branch || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Graduation</div><div class="review-val">${d.grad || '—'}</div></div>
+      <div class="review-row"><div class="review-key">Interests</div><div class="review-val" style="font-size:12px">${ints}</div></div>
+    </div>`;
+    }
+
+    // ── SUBMIT (Firebase Firestore with demo-mode fallback) ──
+    async function submitApplication() {
+      const termsEl = document.getElementById('chk-terms');
+      const chkErr = document.getElementById('chk-err');
+      chkErr.classList.remove('show');
+      if (!termsEl.checked) { chkErr.classList.add('show'); return; }
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      document.getElementById('submit-label').style.opacity = '0';
+      document.getElementById('submit-arrow').style.display = 'none';
+      document.getElementById('submit-spinner').style.display = 'inline-flex';
+
+      const appId = 'APP-' + Date.now().toString().slice(-6);
+      const now = new Date();
+      const timeStr = now.toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+      const request = {
+        id: appId,
+        refCode: formData.refCode,
+        ambassadorName: formData.ambassador.name,
+        ambassadorUid: formData.ambassador.uid || null,
+        fname: formData.fname,
+        lname: formData.lname,
+        email: formData.email,
+        phone: formData.phone,
+        gender: formData.gender || '',
+        source: formData.source || '',
+        college: formData.college,
+        course: formData.course,
+        year: formData.year || '',
+        branch: formData.branch || '',
+        grad: formData.grad || '',
+        interests: formData.interests || [],
+        notes: formData.notes || '',
+        status: 'Pending',
+        submittedAt: timeStr,
+        timestamp: now.getTime(),
+        read: false,
+      };
+
+      // Try Firestore; silently fall through to demo mode if unavailable
+      try {
+        const db = window.__db;
+        if (db && window.__fsAddDoc) {
+          await window.__fsAddDoc(window.__fsCollection(db, "student_enrollments"), {
+            ...request,
+            createdAt: window.__fsTimestamp()
+          });
+          console.log('✅ Saved to Firestore:', appId);
+        } else {
+          // Demo mode: store locally
+          const pending = JSON.parse(localStorage.getItem('pending_enrollments') || '[]');
+          pending.push(request);
+          localStorage.setItem('pending_enrollments', JSON.stringify(pending));
+          console.log('📦 Demo mode — saved locally:', appId);
+        }
+      } catch (err) {
+        // Firestore failed — still show success via demo mode
+        console.warn('Firestore unavailable, demo mode:', err.message);
+        const pending = JSON.parse(localStorage.getItem('pending_enrollments') || '[]');
+        pending.push(request);
+        localStorage.setItem('pending_enrollments', JSON.stringify(pending));
+      }
+
+      // ── Always show success screen ──
+      document.getElementById('form-shell').style.display = 'none';
+      document.getElementById('step-track').style.display = 'none';
+      const progressHeader = document.querySelector('.form-container > div:first-child');
+      if (progressHeader) progressHeader.style.display = 'none';
+      document.getElementById('app-id-display').textContent = appId;
+      document.getElementById('success-amb-initials').textContent = formData.ambassador.initials;
+      document.getElementById('success-amb-initials').style.background =
+        'linear-gradient(135deg,' + formData.ambassador.color + ',' + formData.ambassador.color + 'bb)';
+      document.getElementById('success-amb-name').textContent = formData.ambassador.name;
+      document.getElementById('success-amb-college').textContent = formData.ambassador.college + ' · Campus Ambassador';
+      document.getElementById('success-screen').classList.add('show');
+    }
+
+    // ── TOAST ─────────────────────────────────────────────
+    let _tt;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.opacity = '1'; t.style.transform = 'translateY(0)';
+      clearTimeout(_tt);
+      _tt = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateY(10px)'; }, 3000);
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="hushh-logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seed Ambassadors to Firebase</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:#F8FAFC;color:#0F172A;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{background:#fff;border-radius:16px;box-shadow:0 8px 40px rgba(30,64,175,.13);overflow:hidden;width:100%;max-width:720px}
+  .card-header{background:linear-gradient(135deg,#0f1f5c,#1E40AF);padding:28px 32px;color:#fff}
+  .card-header h1{font-family:'Sora',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px}
+  .card-header p{opacity:.75;font-size:13.5px}
+  .card-body{padding:28px 32px}
+  .amb-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+  .amb-item{display:flex;align-items:center;gap:14px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 16px;transition:border-color .2s}
+  .amb-item.uploaded{border-color:#10B981;background:#ECFDF5}
+  .amb-item.error{border-color:#EF4444;background:#FEF2F2}
+  .amb-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+  .amb-name{font-weight:700;font-size:13.5px;color:#0F172A}
+  .amb-meta{font-size:12px;color:#64748B;margin-top:2px}
+  .amb-code{font-family:'JetBrains Mono',monospace;font-size:12px;color:#1E40AF;font-weight:600;margin-left:auto;background:#EFF6FF;padding:3px 10px;border-radius:6px}
+  .amb-status{margin-left:8px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+  .status-waiting{background:#F1F5F9;color:#94A3B8}
+  .status-uploading{background:#FFFBEB;color:#92400E}
+  .status-done{background:#ECFDF5;color:#065F46}
+  .status-error{background:#FEF2F2;color:#991B1B}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:all .2s;width:100%;justify-content:center}
+  .btn-primary{background:#1E40AF;color:#fff}
+  .btn-primary:hover{background:#1e3a8a;box-shadow:0 4px 14px rgba(30,64,175,.3)}
+  .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+  .btn-green{background:#10B981;color:#fff}
+  .btn-green:hover{background:#059669}
+  #progress-bar-wrap{height:6px;background:#E2E8F0;border-radius:3px;overflow:hidden;margin-bottom:20px}
+  #progress-bar{height:100%;background:#10B981;border-radius:3px;width:0%;transition:width .4s ease}
+  #log{background:#0F172A;border-radius:10px;padding:16px;color:#94A3B8;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;max-height:180px;overflow-y:auto;margin-top:20px;display:none}
+  .log-ok{color:#34D399}
+  .log-err{color:#F87171}
+  .log-info{color:#60A5FA}
+  .summary{border-radius:10px;padding:16px 20px;font-size:14px;margin-top:20px;display:none}
+  .summary.success{background:#ECFDF5;border:1.5px solid #A7F3D0;color:#065F46}
+  .summary.partial{background:#FFFBEB;border:1.5px solid #FDE68A;color:#92400E}
+  h3{font-family:'Sora',sans-serif;font-size:14px;font-weight:700;color:#0F172A;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+</style>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, setDoc, doc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCAE7NAySckcGH4tXvOQuKd7nujklzhxws",
+  authDomain: "hushh-9bd71.firebaseapp.com",
+  projectId: "hushh-9bd71",
+  storageBucket: "hushh-9bd71.firebasestorage.app",
+  messagingSenderId: "244828227461",
+  appId: "1:244828227461:web:16c8b993d3bb2de2e0a6ec",
+  measurementId: "G-ZMYYXHDWGP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+window.__db = db;
+window.__fsSetDoc = setDoc;
+window.__fsDoc = doc;
+window.__fsCollection = collection;
+window.__fsTimestamp = serverTimestamp;
+console.log("✅ Firebase initialized");
+</script>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <h1>🎓 Ambassador Database Seeder</h1>
+    <p>Upload all 12 HushhAmbassify ambassador profiles to Firebase Firestore in one click.</p>
+  </div>
+  <div class="card-body">
+    <h3>Ambassadors to Upload</h3>
+    <div id="progress-bar-wrap" style="display:none">
+      <div id="progress-bar"></div>
+    </div>
+    <div class="amb-list" id="amb-list"></div>
+    <button class="btn btn-primary" id="seed-btn" onclick="seedAll()">
+      🚀 Upload All Ambassadors to Firebase
+    </button>
+    <div id="log"></div>
+    <div class="summary" id="summary"></div>
+  </div>
+</div>
+
+<script>
+// ── Complete ambassador dataset ──────────────────────────────────
+const AMBASSADORS = [
+  {
+    refCode: 'ARJUN-IITD-2026',
+    name: 'Arjun Kumar',
+    fname: 'Arjun',
+    lname: 'Kumar',
+    college: 'IIT Delhi',
+    email: 'arjun.kumar@iitd.ac.in',
+    phone: '+91 98765 43210',
+    course: 'B.Tech',
+    year: '3rd Year',
+    branch: 'Computer Science',
+    status: 'Approved',
+    initials: 'AK',
+    color: '#1E40AF',
+    signups: 183,
+    convRate: '42%',
+    activityStatus: 'Active',
+    joinedAt: 'Sep 2025',
+    bio: 'Top ambassador at IIT Delhi, leading the tech community initiative.'
+  },
+  {
+    refCode: 'SNEHA-BITS-2026',
+    name: 'Sneha Rao',
+    fname: 'Sneha',
+    lname: 'Rao',
+    college: 'BITS Pilani',
+    email: 'sneha.rao@bits.ac.in',
+    phone: '+91 97654 32109',
+    course: 'B.Tech',
+    year: '4th Year',
+    branch: 'Electronics',
+    status: 'Approved',
+    initials: 'SR',
+    color: '#10B981',
+    signups: 164,
+    convRate: '38%',
+    activityStatus: 'Active',
+    joinedAt: 'Sep 2025',
+    bio: 'Passionate about connecting BITS students with the Hushh ecosystem.'
+  },
+  {
+    refCode: 'ROHAN-NIT-2026',
+    name: 'Rohan Verma',
+    fname: 'Rohan',
+    lname: 'Verma',
+    college: 'NIT Trichy',
+    email: 'rohan.verma@nit.ac.in',
+    phone: '+91 96543 21098',
+    course: 'B.Tech',
+    year: '3rd Year',
+    branch: 'Mechanical Engineering',
+    status: 'Approved',
+    initials: 'RV',
+    color: '#8B5CF6',
+    signups: 142,
+    convRate: '35%',
+    activityStatus: 'Active',
+    joinedAt: 'Oct 2025',
+    bio: 'Building a strong Hushh community across NIT Trichy campus.'
+  },
+  {
+    refCode: 'MEERA-VIT-2026',
+    name: 'Meera Nair',
+    fname: 'Meera',
+    lname: 'Nair',
+    college: 'VIT Vellore',
+    email: 'meera.nair@vit.ac.in',
+    phone: '+91 95432 10987',
+    course: 'M.Tech',
+    year: '1st Year',
+    branch: 'Biotechnology',
+    status: 'Approved',
+    initials: 'MN',
+    color: '#F59E0B',
+    signups: 128,
+    convRate: '31%',
+    activityStatus: 'On Leave',
+    joinedAt: 'Oct 2025',
+    bio: 'Connecting science and tech students at VIT Vellore.'
+  },
+  {
+    refCode: 'KARTHIK-IIIT-2026',
+    name: 'Karthik S',
+    fname: 'Karthik',
+    lname: 'S',
+    college: 'IIIT Hyderabad',
+    email: 'karthik.s@iiit.ac.in',
+    phone: '+91 94321 09876',
+    course: 'B.Tech',
+    year: '2nd Year',
+    branch: 'Computer Science',
+    status: 'Approved',
+    initials: 'KS',
+    color: '#EF4444',
+    signups: 115,
+    convRate: '29%',
+    activityStatus: 'Active',
+    joinedAt: 'Nov 2025',
+    bio: 'AI/ML enthusiast driving Hushh adoption at IIIT Hyderabad.'
+  },
+  {
+    refCode: 'PRIYA-BITS-2026',
+    name: 'Priya Sharma',
+    fname: 'Priya',
+    lname: 'Sharma',
+    college: 'BITS Pilani',
+    email: 'priya.sharma@bits.ac.in',
+    phone: '+91 93210 98765',
+    course: 'MBA',
+    year: '1st Year',
+    branch: 'Management',
+    status: 'Approved',
+    initials: 'PS',
+    color: '#EC4899',
+    signups: 98,
+    convRate: '27%',
+    activityStatus: 'Active',
+    joinedAt: 'Nov 2025',
+    bio: 'MBA student focusing on entrepreneurship and startup ecosystems.'
+  },
+  {
+    refCode: 'ADITYA-IITB-2026',
+    name: 'Aditya Raj',
+    fname: 'Aditya',
+    lname: 'Raj',
+    college: 'IIT Bombay',
+    email: 'aditya.raj@iitb.ac.in',
+    phone: '+91 92109 87654',
+    course: 'B.Tech',
+    year: '3rd Year',
+    branch: 'Electrical Engineering',
+    status: 'Approved',
+    initials: 'AR',
+    color: '#06B6D4',
+    signups: 94,
+    convRate: '25%',
+    activityStatus: 'Active',
+    joinedAt: 'Dec 2025',
+    bio: 'Leading the IIT Bombay chapter with a focus on tech innovation.'
+  },
+  {
+    refCode: 'TANVI-IITM-2026',
+    name: 'Tanvi Gupta',
+    fname: 'Tanvi',
+    lname: 'Gupta',
+    college: 'IIT Madras',
+    email: 'tanvi.gupta@iitm.ac.in',
+    phone: '+91 91098 76543',
+    course: 'B.Tech',
+    year: '2nd Year',
+    branch: 'Data Science',
+    status: 'Approved',
+    initials: 'TG',
+    color: '#84CC16',
+    signups: 87,
+    convRate: '24%',
+    activityStatus: 'Active',
+    joinedAt: 'Dec 2025',
+    bio: 'Data science enthusiast building connections across IIT Madras.'
+  },
+  {
+    refCode: 'RAVI-NITW-2026',
+    name: 'Ravi Shankar',
+    fname: 'Ravi',
+    lname: 'Shankar',
+    college: 'NIT Warangal',
+    email: 'ravi.shankar@nitw.ac.in',
+    phone: '+91 90987 65432',
+    course: 'B.Tech',
+    year: '4th Year',
+    branch: 'Civil Engineering',
+    status: 'Approved',
+    initials: 'RS',
+    color: '#F97316',
+    signups: 79,
+    convRate: '22%',
+    activityStatus: 'Active',
+    joinedAt: 'Jan 2026',
+    bio: 'Growing the Hushh community at NIT Warangal.'
+  },
+  {
+    refCode: 'ANANYA-VITC-2026',
+    name: 'Ananya P',
+    fname: 'Ananya',
+    lname: 'P',
+    college: 'VIT Chennai',
+    email: 'ananya.p@vitchennai.ac.in',
+    phone: '+91 89876 54321',
+    course: 'B.Tech',
+    year: '2nd Year',
+    branch: 'Information Technology',
+    status: 'Approved',
+    initials: 'AP',
+    color: '#94A3B8',
+    signups: 72,
+    convRate: '21%',
+    activityStatus: 'Inactive',
+    joinedAt: 'Jan 2026',
+    bio: 'IT student building the Hushh network at VIT Chennai.'
+  },
+  {
+    refCode: 'DEV-IITKGP-2026',
+    name: 'Dev Malhotra',
+    fname: 'Dev',
+    lname: 'Malhotra',
+    college: 'IIT Kharagpur',
+    email: 'dev.malhotra@iitkgp.ac.in',
+    phone: '+91 88765 43210',
+    course: 'B.Tech',
+    year: '3rd Year',
+    branch: 'Computer Science',
+    status: 'Approved',
+    initials: 'DM',
+    color: '#1E40AF',
+    signups: 68,
+    convRate: '20%',
+    activityStatus: 'Active',
+    joinedAt: 'Feb 2026',
+    bio: 'Driving growth at IIT Kharagpur through peer-to-peer referrals.'
+  },
+  {
+    refCode: 'KAVYA-NITC-2026',
+    name: 'Kavya R',
+    fname: 'Kavya',
+    lname: 'R',
+    college: 'NIT Calicut',
+    email: 'kavya.r@nitc.ac.in',
+    phone: '+91 87654 32109',
+    course: 'B.Tech',
+    year: '2nd Year',
+    branch: 'Computer Science',
+    status: 'Approved',
+    initials: 'KR',
+    color: '#10B981',
+    signups: 61,
+    convRate: '19%',
+    activityStatus: 'Active',
+    joinedAt: 'Feb 2026',
+    bio: 'Building lasting connections at NIT Calicut for Hushh.'
+  },
+  {
+    refCode: 'DEMO',
+    name: 'Demo Ambassador',
+    fname: 'Demo',
+    lname: 'Ambassador',
+    college: 'Demo Campus',
+    email: 'demo@hushh.ai',
+    phone: '+91 00000 00000',
+    course: 'B.Tech',
+    year: '1st Year',
+    branch: 'Computer Science',
+    status: 'Approved',
+    initials: 'DA',
+    color: '#6366F1',
+    signups: 0,
+    convRate: '0%',
+    activityStatus: 'Active',
+    joinedAt: 'Mar 2026',
+    bio: 'Demo account for testing the student enrollment flow.'
+  },
+];
+
+// ── Render list ──────────────────────────────────────────────────
+function renderList() {
+  const el = document.getElementById('amb-list');
+  el.innerHTML = AMBASSADORS.map((a,i) => `
+    <div class="amb-item" id="amb-item-${i}">
+      <div class="amb-avatar" style="background:${a.color}">${a.initials}</div>
+      <div style="flex:1">
+        <div class="amb-name">${a.name}</div>
+        <div class="amb-meta">${a.college} · ${a.course} · ${a.activityStatus}</div>
+      </div>
+      <span class="amb-code">${a.refCode}</span>
+      <span class="amb-status status-waiting" id="status-${i}">Waiting</span>
+    </div>
+  `).join('');
+}
+renderList();
+
+// ── Seeder ───────────────────────────────────────────────────────
+async function seedAll() {
+  const btn = document.getElementById('seed-btn');
+  const log = document.getElementById('log');
+  const bar = document.getElementById('progress-bar');
+  const barWrap = document.getElementById('progress-bar-wrap');
+  const summary = document.getElementById('summary');
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Uploading…';
+  log.style.display = 'block';
+  barWrap.style.display = 'block';
+  summary.style.display = 'none';
+  log.innerHTML = '';
+
+  // Wait for Firebase to be ready
+  let attempts = 0;
+  while (!window.__db && attempts < 30) {
+    await new Promise(r => setTimeout(r, 200));
+    attempts++;
+  }
+
+  if (!window.__db) {
+    logLine('❌ Firebase not ready. Please refresh and try again.', 'err');
+    btn.disabled = false;
+    btn.textContent = '🔄 Retry';
+    return;
+  }
+
+  logLine('✅ Firebase ready — starting upload…', 'ok');
+
+  let ok = 0, failed = 0;
+
+  for (let i = 0; i < AMBASSADORS.length; i++) {
+    const a = AMBASSADORS[i];
+    const itemEl   = document.getElementById(`amb-item-${i}`);
+    const statusEl = document.getElementById(`status-${i}`);
+    statusEl.textContent = '⏳ Uploading…';
+    statusEl.className = 'amb-status status-uploading';
+
+    try {
+      // Use refCode as document ID so it's idempotent
+      const docRef = window.__fsDoc(
+        window.__fsCollection(window.__db, 'ambassadors'),
+        a.refCode
+      );
+      await window.__fsSetDoc(docRef, {
+        ...a,
+        uid: a.refCode, // synthetic UID using refCode
+        createdAt: window.__fsTimestamp(),
+        updatedAt: window.__fsTimestamp(),
+        seededAt: new Date().toISOString(),
+      }, { merge: true }); // merge=true allows re-running without overwriting custom fields
+
+      statusEl.textContent = '✅ Done';
+      statusEl.className = 'amb-status status-done';
+      itemEl.classList.add('uploaded');
+      logLine(`✅ ${a.name} (${a.refCode}) uploaded`, 'ok');
+      ok++;
+    } catch (err) {
+      statusEl.textContent = '❌ Failed';
+      statusEl.className = 'amb-status status-error';
+      itemEl.classList.add('error');
+      logLine(`❌ ${a.name}: ${err.message}`, 'err');
+      failed++;
+    }
+
+    // Update progress bar
+    bar.style.width = ((i + 1) / AMBASSADORS.length * 100) + '%';
+    await new Promise(r => setTimeout(r, 150)); // small delay for visual effect
+  }
+
+  logLine(`\n🏁 Done: ${ok} uploaded, ${failed} failed`, ok > 0 ? 'ok' : 'err');
+
+  summary.style.display = 'block';
+  if (failed === 0) {
+    summary.className = 'summary success';
+    summary.innerHTML = `
+      <strong>🎉 All ${ok} ambassadors uploaded successfully!</strong><br>
+      They are now live in your Firebase Firestore <code>ambassadors</code> collection.<br>
+      The student enrollment form will auto-load these codes for referral code validation.
+    `;
+    btn.textContent = '✅ Upload Complete';
+    btn.className = 'btn btn-green';
+    btn.disabled = false;
+    btn.onclick = () => location.reload();
+  } else {
+    summary.className = 'summary partial';
+    summary.innerHTML = `
+      <strong>⚠️ ${ok} uploaded, ${failed} failed.</strong><br>
+      Check the log above for details. Make sure Firebase Firestore rules allow writes and try again.
+    `;
+    btn.textContent = '🔄 Retry Failed';
+    btn.disabled = false;
+    btn.onclick = () => location.reload();
+  }
+}
+
+function logLine(msg, type) {
+  const log = document.getElementById('log');
+  const span = document.createElement('span');
+  span.className = `log-${type}`;
+  span.textContent = msg + '\n';
+  log.appendChild(span);
+  log.scrollTop = log.scrollHeight;
+}
+
+window.seedAll = seedAll;
+</script>
+
+</body>
+</html>
